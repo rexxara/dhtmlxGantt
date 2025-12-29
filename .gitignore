@@ -1,0 +1,5 @@
+# .NET / C# 相关
+bin/
+obj/
+Resources/dist/
+Resources/frontendModuleDist/

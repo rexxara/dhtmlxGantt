@@ -1,0 +1,42 @@
+.FGC_ai-prompt-editor {
+  height: 100%;
+}
+
+.FGC_ai-prompt-editor-con {
+  height: 100%;
+}
+
+.FGC_ai-prompt-editor-loading {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.FGC_ai-prompt-editor-no-data {
+  cursor: text;
+  user-select: none;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 100;
+  margin-left: 36px;
+  color: #8F8F8F;
+  font-size: 12px;
+  line-height: 24px;
+}
+
+.FGC_ai-prompt-editor-playGround {
+  width: 100vw;
+  height: 100%;
+  display: flex;
+  border-bottom: 8px solid #F0F0F0;
+  box-sizing: border-box;
+}
+
+
+#root {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+}

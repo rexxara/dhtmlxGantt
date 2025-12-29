@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "dhtmlxGantt": {
+      "commandName": "Executable",
+      "executablePath": "D:\\neoDev\\forguncy\\Forguncy.Server2\\designerBin\\Forguncy.exe"
+    }
+  }
+}

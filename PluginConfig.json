@@ -1,0 +1,38 @@
+{
+  "assembly": [
+    "dhtmlxGantt.dll"
+  ],
+  "css": [],
+  "javascript": [],
+  "serverApiAssembly": [],
+  "image": "Resources/PluginLogo.png",
+  "description": "dhtmlx甘特图插件",
+  "name": "dhtmlx甘特图",
+  "pluginType": "cellType",
+  "guid": "223817ea-c6fa-4a93-a312-521a87f60ad3",
+  "version": "1.0.0.0",
+  "dependenceVersion": "11.0.103.0",
+  "bundleJavaScript": false,
+  "bundleCSS": false,
+  "modularFrontend": {
+    "dir": "FrontEndModule",
+    "devServer": {
+      "enable": false,
+      "port": 5173,
+      "main": "index.ts",
+      "loader": "dev-loader.js",
+      "autoStart": {
+        "enable": true,
+        "npmScript": "dev",
+        "useRandomPort": true
+      }
+    },
+    "output": {
+      "js": "Resources/frontendModuleDist/FrontEndModule.js"
+    }
+  },
+  "custom_config": {
+    "debug": false,
+    "dist": "Resources\\dist"
+  }
+}
