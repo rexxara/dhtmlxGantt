@@ -5,7 +5,7 @@ interface IProps {
 }
 export default function PlayGround(props: IProps) {
     const editorRef = useRef<EditorRef>(null);
-    return <div className="FGC_ai-prompt-editor-playGround">
+    return <div className="FGC_gantt-configurator-editor-playGround">
         <Editor initd={props.initd} width={window.innerWidth} ref={editorRef} />
     </div>
 }

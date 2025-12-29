@@ -15,7 +15,7 @@ interface Window {
         };
         ready: () => void;
     };
-    AiAssistantChatBridge: {
+    dhtmlxGanttBridge: {
         getSerializedData: Function;
         hasUnsavedChanges: Function;
         beforeClose: Function;

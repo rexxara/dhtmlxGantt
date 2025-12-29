@@ -9,7 +9,7 @@ interface IProps {
     }
 }
 
-const language = 'custom-prompt';
+const language = 'gantt-configurator';
 export default function EditorInit(props: IProps) {
     const [initValue] = useAtom(InitValueAtom);
     const [initd] = useAtom(InitdAtom);

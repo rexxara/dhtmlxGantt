@@ -33,7 +33,7 @@ function Editor(props: IProps, _eRef: React.Ref<unknown>) {
         return res;
     });
     useEffect(() => {
-        window.AiAssistantChatBridge = {
+        window.dhtmlxGanttBridge = {
             beforeClose: () => {
                 return true;
             },
@@ -57,19 +57,19 @@ function Editor(props: IProps, _eRef: React.Ref<unknown>) {
             }
         }
     }, []);
-    return <div className="FGC_ai-prompt-editor-con">
+    return <div className="FGC_gantt-configurator-editor-con">
         {noData && <div style={{ width: (props.width - 30) + 'px' }} onClick={() => {
             editorRef.current.focus();
-        }} className="FGC_ai-prompt-editor-no-data">{
+        }} className="FGC_gantt-configurator-editor-no-data">{
                 isCommand ? RS.AiCommandNoDataPlaceholder : RS.AiCellNoDataPlaceholder
             }</div>}
         {(props.initd && editorInitd) ? <EditorInit getRefs={() => ({ editorRef, monacoRef })} /> : <></>}
         <MonacoEditor
             width={props.width}
-            loading={<div className="FGC_ai-prompt-editor-loading"><Spin indicator={<LoadingOutlined style={{ fontSize: 48 }} spin />} /></div>}
-            language="custom-prompt"
-            theme="custom-prompt-theme"
-            className="FGC_ai-prompt-editor"
+            loading={<div className="FGC_gantt-configurator-editor-loading"><Spin indicator={<LoadingOutlined style={{ fontSize: 48 }} spin />} /></div>}
+            language="gantt-configurator"
+            theme="gantt-configurator-theme"
+            className="FGC_gantt-configurator-editor"
             beforeMount={(monaco) => {
                 initHighlight(monaco);
             }}
@@ -108,8 +108,8 @@ function Editor(props: IProps, _eRef: React.Ref<unknown>) {
 }
 export default forwardRef(Editor)
 function initHighlight(monaco: Monaco) {
-    monaco.languages.register({ id: 'custom-prompt' });
-    monaco.languages.setMonarchTokensProvider('custom-prompt', {
+    monaco.languages.register({ id: 'gantt-configurator' });
+    monaco.languages.setMonarchTokensProvider('gantt-configurator', {
         defaultToken: '',
         tokenizer: {
             root: [
@@ -120,7 +120,7 @@ function initHighlight(monaco: Monaco) {
     });
 
     // 添加语言配置，支持自动闭合括号
-    monaco.languages.setLanguageConfiguration('custom-prompt', {
+    monaco.languages.setLanguageConfiguration('gantt-configurator', {
         brackets: [
             ['[', ']']
         ],
@@ -132,7 +132,7 @@ function initHighlight(monaco: Monaco) {
         ]
     });
 
-    monaco.editor.defineTheme('custom-prompt-theme', {
+    monaco.editor.defineTheme('gantt-configurator-theme', {
         base: 'vs',
         inherit: true,
         rules: [

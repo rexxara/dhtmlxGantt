@@ -80,8 +80,8 @@ namespace dhtmlxGantt.Designer
             
             var currentValue = dataContext.Value?.ToString() ?? "";
             
-            _webBrowser.EvaluateFunctionAsync("window.AiAssistantChatBridge.windowReopen");
-            _webBrowser.EvaluateFunctionAsync("window.AiAssistantChatBridge.setValue", currentValue);
+            _webBrowser.EvaluateFunctionAsync("window.dhtmlxGanttBridge.windowReopen");
+            _webBrowser.EvaluateFunctionAsync("window.dhtmlxGanttBridge.setValue", currentValue);
 
             var param = new DialogWindowArgs()
             {
@@ -99,9 +99,9 @@ namespace dhtmlxGantt.Designer
                 {
                     if (args.ClosedBy == DialogClosedBy.Ok)
                     {
-                        await _webBrowser.EvaluateFunctionAsync("window.AiAssistantChatBridge.beforeClose");
+                        await _webBrowser.EvaluateFunctionAsync("window.dhtmlxGanttBridge.beforeClose");
                         dataContext.Value =
-                            await _webBrowser.EvaluateFunctionAsync("window.AiAssistantChatBridge.getSerializedData");
+                            await _webBrowser.EvaluateFunctionAsync("window.dhtmlxGanttBridge.getSerializedData");
                     }
                     return true;
                 }

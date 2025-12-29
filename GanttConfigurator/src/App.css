@@ -1,19 +1,19 @@
-.FGC_ai-prompt-editor {
+.FGC_gantt-configurator-editor {
   height: 100%;
 }
 
-.FGC_ai-prompt-editor-con {
+.FGC_gantt-configurator-editor-con {
   height: 100%;
 }
 
-.FGC_ai-prompt-editor-loading {
+.FGC_gantt-configurator-editor-loading {
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.FGC_ai-prompt-editor-no-data {
+.FGC_gantt-configurator-editor-no-data {
   cursor: text;
   user-select: none;
   position: absolute;
@@ -26,7 +26,7 @@
   line-height: 24px;
 }
 
-.FGC_ai-prompt-editor-playGround {
+.FGC_gantt-configurator-editor-playGround {
   width: 100vw;
   height: 100%;
   display: flex;
