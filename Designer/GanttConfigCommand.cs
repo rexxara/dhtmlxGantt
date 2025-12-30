@@ -158,19 +158,12 @@ namespace dhtmlxGantt.Designer
         {
             return Resources.Lang;
         }
-        public void Save(string data)
-        {
-            _dataContext.Value = data;
-        }
-        // 以下方法是从其他项目复制过来的，暂时返回默认值
+
         public string GetDataSources()
         {
             return "[]";
         }
-        public bool IsCommand()
-        {
-            return false;
-        }
+
         public string GetAccent1Color()
         {
             if (_builderContext == null)

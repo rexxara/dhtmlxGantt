@@ -5,7 +5,6 @@ interface Window {
         hostObjects: {
             HostObject: {
                 GetParamValue(): Promise<string>;
-                IsCommand(): Promise<boolean>;
                 GetAllListviewInPage(): Promise<string>;
                 GetLanguage(): Promise<'en' | 'cn' | 'ja' | 'ko'>;
                 GetDataSources: () => Promise<string>;

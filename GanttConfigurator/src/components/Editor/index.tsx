@@ -1,7 +1,7 @@
-import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from "react"
+import { forwardRef, useEffect, useImperativeHandle, useRef } from "react"
 import MonacoEditor, { Monaco } from '@monaco-editor/react';
 import { useAtom } from "jotai";
-import { EditorNoDataAtom, InitdAtom, IsCommandAtom } from "../../Context";
+import { EditorInitdAtom, EditorNoDataAtom, InitdAtom, IsCommandAtom } from "../../Context";
 import { LoadingOutlined } from '@ant-design/icons';
 import { Spin } from 'antd';
 import { RS } from "../../i18n";
@@ -18,7 +18,7 @@ function Editor(props: IProps, _eRef: React.Ref<unknown>) {
     const editorRef = useRef<any | null>();
     const monacoRef = useRef<any | null>();
     const [isCommand] = useAtom(IsCommandAtom);
-    const [editorInitd, setEditorInitd] = useState(false);
+    const [editorInitd, setEditorInitd] = useAtom(EditorInitdAtom);
     const [_, setInitd] = useAtom(InitdAtom);
 
     const [noData, setNoData] = useAtom(EditorNoDataAtom);

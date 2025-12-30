@@ -1,9 +1,9 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { useAtom } from "jotai";
 import Editor, { EditorRef } from "../Editor";
 import Gantt from "../Gantt";
 import { CodeOutlined, EyeOutlined } from "@ant-design/icons";
-import { Accent1ColorAtom } from "../../Context";
+import { Accent1ColorAtom, EditorValueAtom, ShowEditorAtom, ShowGanttAtom } from "../../Context";
 import "./index.css";
 
 interface IProps {
@@ -12,9 +12,9 @@ interface IProps {
 
 export default function PlayGround(props: IProps) {
     const editorRef = useRef<EditorRef>(null);
-    const [editorValue, setEditorValue] = useState<string>("");
-    const [showEditor, setShowEditor] = useState<boolean>(true);
-    const [showGantt, setShowGantt] = useState<boolean>(true);
+    const [editorValue, setEditorValue] = useAtom(EditorValueAtom);
+    const [showEditor, setShowEditor] = useAtom(ShowEditorAtom);
+    const [showGantt, setShowGantt] = useAtom(ShowGanttAtom);
     const editorValueUpdateIntervalRef = useRef<any>(null);
     const [accent1Color] = useAtom(Accent1ColorAtom);
 
@@ -58,8 +58,7 @@ export default function PlayGround(props: IProps) {
     return (
         <div 
             className="gantt-configurator-container"
-            style={accent1Color ? { '--accent-color': accent1Color } as React.CSSProperties : undefined}
-        >
+            style={accent1Color ? { '--accent-color': accent1Color } as React.CSSProperties : undefined}>
             <div className="gantt-configurator-main">
                 <div 
                     className="gantt-configurator-editor-panel"
