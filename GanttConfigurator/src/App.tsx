@@ -1,9 +1,10 @@
 import { useEffect } from 'react'
 import './App.css'
 import { useAtom } from 'jotai';
-import { CommandParamsAtom, DataSourcesAtom, InitdAtom, InitValueAtom, IsCommandAtom, LangAtom, ListviewInfoAtom } from './Context';
+import { Accent1ColorAtom, DataSourcesAtom, InitdAtom, InitValueAtom, IsCommandAtom, LangAtom, ListviewInfoAtom } from './Context';
 import { ListViewInfo } from './Model';
 import PlayGround from './components/PlayGround';
+import { DEFAULT_GANTT_CONFIG } from './Utils/defaultGanttConfig';
 function App() {
   const [_initValue, setInitValue] = useAtom(InitValueAtom);
   const [initd, setInitd] = useAtom(InitdAtom);
@@ -11,7 +12,7 @@ function App() {
   const [_DataSources, setDataSources] = useAtom(DataSourcesAtom);
   const [_ListviewInfo, setListviewInfo] = useAtom(ListviewInfoAtom);
   const [_isCommand, setIsCommand] = useAtom(IsCommandAtom);
-  const [_commandParams, setCommandParams] = useAtom(CommandParamsAtom);
+  const [_accent1Color, setAccent1Color] = useAtom(Accent1ColorAtom);
   useEffect(() => {
     if (!initd) {
       window?.forguncyWebBrowserBridge?.ready();
@@ -24,12 +25,6 @@ function App() {
     });
     
     let initValue = '';
-    
-    const commandParamPromise = window?.forguncyWebBrowserBridge?.hostObjects['HostObject']?.GetCommandParams().then(commandParamString => {
-      setCommandParams(JSON.parse(commandParamString))
-    }).catch(() => {
-      setCommandParams([]);
-    });
     
     const isCommandPromise = Promise.resolve().then(() => {
       setIsCommand(false);
@@ -54,8 +49,20 @@ function App() {
       setListviewInfo([]);
     });
 
+    const accent1ColorPromise = window?.forguncyWebBrowserBridge?.hostObjects['HostObject']?.GetAccent1Color().then((data: string) => {
+      setAccent1Color(data || '');
+    }).catch(() => {
+      setAccent1Color('');
+    });
+
     
-    await Promise.all([isCommandPromise, cellInfoPromise, langPromise, listViewPromise, commandParamPromise, valuePromise]);
+    await Promise.all([isCommandPromise, cellInfoPromise, langPromise, listViewPromise, valuePromise, accent1ColorPromise]);
+    
+    // 如果没有值，设置默认值
+    if (!initValue || initValue.trim() === '') {
+      initValue = DEFAULT_GANTT_CONFIG;
+    }
+    
     setInitValue(initValue ?? '');
     setInitd(true);
   }

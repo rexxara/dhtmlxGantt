@@ -82,7 +82,7 @@ namespace dhtmlxGantt.Designer
             
             _webBrowser.EvaluateFunctionAsync("window.dhtmlxGanttBridge.windowReopen");
             _webBrowser.EvaluateFunctionAsync("window.dhtmlxGanttBridge.setValue", currentValue);
-
+            
             var param = new DialogWindowArgs()
             {
                 Margin = new Thickness(14, 10, 14, 10),
@@ -140,10 +140,6 @@ namespace dhtmlxGantt.Designer
             _name = name;
         }
 
-        public string GetCommandParams()
-        {
-            return "[]";
-        }
         public string GetAllListviewInPage()
         {
             if (_builderContext == null)
@@ -152,10 +148,6 @@ namespace dhtmlxGantt.Designer
             }
             var listViewInfo = _builderContext.EnumAllListViewInfos(_builderContext.PageName).ToList();
             return JsonSerializer.Serialize(listViewInfo);
-        }
-        public string GetParamName()
-        {
-            return _name;
         }
         public string GetParamValue()
         {
@@ -178,6 +170,24 @@ namespace dhtmlxGantt.Designer
         public bool IsCommand()
         {
             return false;
+        }
+        public string GetAccent1Color()
+        {
+            if (_builderContext == null)
+            {
+                return "";
+            }
+            var themeColors = _builderContext.ThemeColors;
+            if (themeColors != null && themeColors.ContainsKey("Accent1"))
+            {
+                var color = themeColors["Accent1"];
+                if (!string.IsNullOrEmpty(color) && color.StartsWith("#") && color.Length == 9)
+                {
+                    return "#" + color.Substring(3);
+                }
+                return "";
+            }
+            return "";
         }
     }
 }

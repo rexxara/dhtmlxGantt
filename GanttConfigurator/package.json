@@ -14,6 +14,7 @@
     "@ant-design/icons": "^5.5.2",
     "@monaco-editor/react": "^4.6.0",
     "antd": "^5.22.4",
+    "dhtmlx-gantt": "^9.1.1",
     "excel-formula-tokenizer": "^3.0.0",
     "jotai": "^2.10.3",
     "lodash.clonedeep": "^4.5.0",

@@ -10,6 +10,9 @@ dependencies:
   antd:
     specifier: ^5.22.4
     version: 5.22.4(react-dom@18.3.1)(react@18.3.1)
+  dhtmlx-gantt:
+    specifier: ^9.1.1
+    version: 9.1.1
   excel-formula-tokenizer:
     specifier: ^3.0.0
     version: 3.0.0
@@ -1448,6 +1451,10 @@ packages:
   /deep-is@0.1.4:
     resolution: {integrity: sha512-oIPzksmTg4/MriiaYGO+okXDT7ztn/w3Eptv/+gSIdMdKsJo0u4CfYNFJPy+4SKMuCqGw2wxnA+URMg3t8a/bQ==}
     dev: true
+
+  /dhtmlx-gantt@9.1.1:
+    resolution: {integrity: sha512-ym4m+kHHFJfeI3JYs7PdfQb31uqfbA44qrBxuc3mye9kx6Q+uc4dg6zxAXr7ll+6G9ccRcGZqk2fKfBqwCMp3w==}
+    dev: false
 
   /electron-to-chromium@1.5.73:
     resolution: {integrity: sha512-8wGNxG9tAG5KhGd3eeA0o6ixhiNdgr0DcHWm85XPCphwZgD1lIEoi6t3VERayWao7SF7AAZTw6oARGJeVjH8Kg==}

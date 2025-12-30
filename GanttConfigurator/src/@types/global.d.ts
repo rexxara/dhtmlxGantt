@@ -5,12 +5,11 @@ interface Window {
         hostObjects: {
             HostObject: {
                 GetParamValue(): Promise<string>;
-                GetCommandParams(): Promise<string>;
                 IsCommand(): Promise<boolean>;
-                GetParamName(): Promise<string>;
                 GetAllListviewInPage(): Promise<string>;
                 GetLanguage(): Promise<'en' | 'cn' | 'ja' | 'ko'>;
                 GetDataSources: () => Promise<string>;
+                GetAccent1Color(): Promise<string>;
             };
         };
         ready: () => void;

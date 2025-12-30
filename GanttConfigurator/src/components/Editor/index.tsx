@@ -7,11 +7,12 @@ import { Spin } from 'antd';
 import { RS } from "../../i18n";
 import EditorInit from "./editorInit";
 interface IProps {
-    width: number;
+    width?: number | string; // 支持数字或字符串（如 "100%"）
     initd: boolean;
 }
 export interface EditorRef {
     getRef: () => { monacoRef: any, editorRef: any }
+    getValue: () => string | undefined
 }
 function Editor(props: IProps, _eRef: React.Ref<unknown>) {
     const editorRef = useRef<any | null>();
@@ -28,6 +29,9 @@ function Editor(props: IProps, _eRef: React.Ref<unknown>) {
                     monacoRef: monacoRef.current,
                     editorRef: editorRef.current
                 }
+            },
+            getValue: () => {
+                return editorRef.current?.getValue();
             }
         }
         return res;
@@ -57,15 +61,46 @@ function Editor(props: IProps, _eRef: React.Ref<unknown>) {
             }
         }
     }, []);
+
+    useEffect(() => {
+        if (!editorRef.current) {
+            return;
+        }
+
+        const handleResize = () => {
+            if (editorRef.current) {
+                editorRef.current.layout();
+            }
+        };
+
+        window.addEventListener('resize', handleResize);
+        
+        const container = editorRef.current.getContainerDomNode();
+        let resizeObserver: ResizeObserver | null = null;
+        
+        if (container && window.ResizeObserver) {
+            resizeObserver = new ResizeObserver(() => {
+                handleResize();
+            });
+            resizeObserver.observe(container);
+        }
+
+        return () => {
+            window.removeEventListener('resize', handleResize);
+            if (resizeObserver) {
+                resizeObserver.disconnect();
+            }
+        };
+    }, [editorInitd]);
     return <div className="FGC_gantt-configurator-editor-con">
-        {noData && <div style={{ width: (props.width - 30) + 'px' }} onClick={() => {
+        {noData && <div style={{ width: typeof props.width === 'number' ? (props.width - 30) + 'px' : 'calc(100% - 30px)' }} onClick={() => {
             editorRef.current.focus();
         }} className="FGC_gantt-configurator-editor-no-data">{
                 isCommand ? RS.AiCommandNoDataPlaceholder : RS.AiCellNoDataPlaceholder
             }</div>}
         {(props.initd && editorInitd) ? <EditorInit getRefs={() => ({ editorRef, monacoRef })} /> : <></>}
         <MonacoEditor
-            width={props.width}
+            width={props.width || "100%"}
             loading={<div className="FGC_gantt-configurator-editor-loading"><Spin indicator={<LoadingOutlined style={{ fontSize: 48 }} spin />} /></div>}
             language="gantt-configurator"
             theme="gantt-configurator-theme"
